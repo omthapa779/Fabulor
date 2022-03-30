@@ -1,0 +1,132 @@
+.welcome_text{
+    width: 100.4vw;
+    height: 98vh;
+    background-size: cover;
+    background-color: royalblue;
+    position: relative;
+    top: -1.2vh;
+    left: -1vw;
+}
+.header{
+    font-family: "Times New Roman";
+    font-size: 5vw;
+    letter-spacing: 0.5vw;
+    color: white;
+    position: relative;
+    top: 15vw;
+    text-align: center;
+}
+.welcome_overlay{
+    width: 100.4vw;
+    height: 98vh;
+    background: rgba(0, 0, 0, .5)
+}
+
+.header_hr{
+    position: relative;
+    top: 25vh;
+    width: 70vw;
+}
+.login_redirect{
+    position: absolute;
+    width: 50vw;
+    left: 12vw;
+    top: 25vw;
+    text-align: center;
+    opacity: 1;
+    font-size: 3vw;
+}
+.login_redirect a{
+    width: 50vw;
+    padding: 12px 48px;
+    text-align: center;
+    color: white;
+    border: solid 2px white;
+    z-index: 1;
+    text-decoration: none;
+}
+.signup_redirect{
+    position: absolute;
+    width: 50vw;
+    left: 35vw;
+    top: 25vw;
+    text-align: center;
+    opacity: 1;
+    font-size: 3vw;
+}
+.signup_redirect a{
+    width: 50vw;
+    padding: 12px 35px;
+    text-align: center;
+    color: white;
+    border: solid 2px white;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.login_main{
+    background-color: royalblue;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    left: -.6vw;
+    top: -6vh;
+}
+.login_background{
+    background-color: black;
+    width: 20vw;
+    height: 50vh;
+    color: white;
+    position: relative;
+    top: 30vh;
+    left: 40vw;
+    border-radius: 1vw;
+}
+.login_text{
+    text-align: center;
+    font-family: "Times New Roman";
+    position: relative;
+    top: 3vh;
+}
+.email_border{
+    position: relative;
+    top: 5vh;
+    left: 2vw;
+}
+
+.email_border input{
+    width: 15vw;
+    border-radius: 1vw;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+.password_border{
+    position: relative;
+    top: 10vh;
+    left: 2vw;
+}
+.password_border input{
+    width: 15vw;
+    border-radius: 1vw;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+.login_submit{
+    position: relative;
+    top: 15vh;
+    left: 6.5vw;
+    opacity: 1;
+    font-size: 3vw;
+}
+.login_submit button{
+    color: white;
+    background-color: black;
+    border: solid 2px white;
+    font-size: 2vw;
+    font-family: Impact;
+}
