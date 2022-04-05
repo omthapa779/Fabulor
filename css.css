@@ -97,17 +97,72 @@
     }
 }
 
-.login{
-    height: 50vh;
-    width: 50vw;
+.buttons{
+    width: 200vw;
+    position: relative;
+    top: -40vh;
+    left: 30vw;
 }
 
-.login_button{
-   text-decoration: none;
-    color: white;
-    height: 10vh;
+.login{
+  border: solid 2px white;
     width: 10vw;
+  border-color: #C3073F;
+    text-align: center;
+    height: 3vw;
+    animation: login_up;
+    animation-duration: 1.5s;
     position: relative;
+}
+@keyframes login_up{
+    0%{
+        top: 50vh;
+    }
+    100%{
+        top: 0vh;
+    }
+}
+.login_button{
+    text-decoration: none;
+    color: white;
+    background: none;
+    width: 10vw;
+    height: 5vw;
+    border: none;
+    position: relative;
+    top: 0.8vw;
+}
+
+.signup{
+    border: solid 2px white;
+    width: 10vw;
+    border-color: #C3073F;
+    text-align: center;
+    height: 3vw;
+    position: relative;
+    left: 30vw;
+    top: -6.5vh;
+    animation: sign_up;
+    animation-duration: 2s;
+    position: relative;
+}
+@keyframes sign_up{
+    0%{
+        top: 50vh;
+    }
+    100%{
+        top: -6.5vh;
+    }
+}
+.signup_button{
+    text-decoration: none;
+    color: white;
+    background: none;
+    width: 10vw;
+    height: 5vw;
+    border: none;
+    position: relative;
+    top: -1vw;
 }
 
 

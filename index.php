@@ -16,12 +16,14 @@
       <HR>
       </div>
   </div>
+     <div class="buttons">
          <div class="login">
-             <button class="login_button">Login</button>
+             <a class="login_button">LOGIN</a>
          </div>
          <div class="signup">
-             <button class="signup_button">Sign UP</button>
+             <button class="signup_button">SIGN UP</button>
          </div>
+     </div>
  </div>
 </body>
 </html>
