@@ -2,17 +2,26 @@
 
 <head>
     <title>Fabulor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 
 <body>
  <div class="welcome_text">
-     <div class="welcome_overlay">
-     <h1 class="header">Welcome to FabuloR</h1>
-         <hr class="header_hr">
-         <div class="login_redirect"><a href="login.php">Login</a></div>
-         <div class="signup_redirect"><a href="signup.php">SignUP!</a></div>
-     </div>
+  <div class="logo_head">
+      <img src="./images/fa.png" class="fa">
+      <img src="./images/bu.png" class="bu">
+      <img src="./images/lor.png" class="lor">
+      <div class="line_index">
+      <HR>
+      </div>
+  </div>
+         <div class="login">
+             <button class="login_button">Login</button>
+         </div>
+         <div class="signup">
+             <button class="signup_button">Sign UP</button>
+         </div>
  </div>
 </body>
 </html>
