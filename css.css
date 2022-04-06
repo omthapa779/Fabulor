@@ -294,17 +294,17 @@
     font-size: 6vw;
 }
 
-.username{
+.email{
 font-family: "Agency FB";
     color: #C3073F;
     font-size: 2vw;
     position: relative;
-    left: -10vw;
-    top: 10vh;
+    left: -11.5vw;
+    top: 5vh;
 }
-#input_username{
+#input_email{
     position: relative;
-    top: 10vh;
+    top: 5vh;
     left: -1.7vw;
     width: 24vw;
     height: 7vh;
@@ -312,17 +312,17 @@ font-family: "Agency FB";
     color: white;
     font-family: "Agency FB";
 }
-.password{
+.username{
     font-family: "Agency FB";
     color: #C3073F;
     font-size: 2vw;
     position: relative;
     left: -10vw;
-    top: 13vh;
+    top: 7vh;
 }
-#input_password{
+#input_username{
     position: relative;
-    top: 13vh;
+    top: 7vh;
     left: -1.7vw;
     width: 24vw;
     height: 7vh;
@@ -334,14 +334,38 @@ font-family: "Agency FB";
     border: solid 0.3vw #C3073F;
     width: 10vw;
     position: relative;
-    top: 20vh;
+    top: 15vh;
     height: 5vh;
-    position: relative;
+    left: 9vw;
 }
 #register{
     background: none;
     border: none;
-    color: white;
+    color: #4E4E50;
     position: relative;
-    top: 2vh;
+    top: 0.7vh;
+    font-family: "Agency FB";
+    font-size: 1.5vw;
+}
+.password{
+    position: relative;
+    top: 8vh;
+    left: -10vw;
+    color: #C3073F;
+    font-family: "Agency FB";
+    font-size: 2vw;
+}
+#input_password{
+    position: relative;
+    top: 8vh;
+    left: -1.7vw;
+    width: 24vw;
+    height: 7vh;
+    background: none;
+    color: white;
+    font-family: "Agency FB";
+}
+
+.signup_thing:hover #register{
+   color: white;
 }
