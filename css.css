@@ -131,8 +131,9 @@
     height: 5vh;
     border: none;
     position: relative;
-    top: -4.2vh;
+    top: -4.7vh;
     font-size: 1.5vw;
+    font-family: "Agency FB";
 }
 .background_white{
     width: 10vw;
@@ -214,7 +215,7 @@
     border: none;
     position: relative;
     top: -5vh;
-    font-family: "Times New Roman";
+    font-family: "Agency FB";
     font-size: 1.5vw;
 }
 
@@ -251,4 +252,96 @@
     animation-delay: inherit;
 }
 
+.back_button {
+    width: 100vw;
+    position: relative;
+    left: 32.5vw;
+     top: 7vh;
+    animation: button_intro;
+    animation-duration: 1.5s;
+}
+@keyframes button_intro {
+    0%{
+        left: -30vw;
+    }
+    100%{
+        left: 32.5vw;
+    }
+}
+.sign_box{
+    width: 30vw;
+    height: 80vh;
+    border: solid 0.4vw #C3073F;
+    position: relative;
+    left: 35vw;
+    background-color: #1A1A1D;
+    animation: sign_box_intro;
+    animation-duration: 3s;
+    text-align: center;
+}
+@keyframes sign_box_intro {
+    0%{
+        height: 0vh;
+    }
+    100%{
+        height: 80vh;
+    }
+}
 
+.sign_box h1{
+    font-family: "Agency FB";
+    color: #C3073F;
+    font-size: 6vw;
+}
+
+.username{
+font-family: "Agency FB";
+    color: #C3073F;
+    font-size: 2vw;
+    position: relative;
+    left: -10vw;
+    top: 10vh;
+}
+#input_username{
+    position: relative;
+    top: 10vh;
+    left: -1.7vw;
+    width: 24vw;
+    height: 7vh;
+    background: none;
+    color: white;
+    font-family: "Agency FB";
+}
+.password{
+    font-family: "Agency FB";
+    color: #C3073F;
+    font-size: 2vw;
+    position: relative;
+    left: -10vw;
+    top: 13vh;
+}
+#input_password{
+    position: relative;
+    top: 13vh;
+    left: -1.7vw;
+    width: 24vw;
+    height: 7vh;
+    background: none;
+    color: white;
+    font-family: "Agency FB";
+}
+.signup_thing{
+    border: solid 0.3vw #C3073F;
+    width: 10vw;
+    position: relative;
+    top: 20vh;
+    height: 5vh;
+    position: relative;
+}
+#register{
+    background: none;
+    border: none;
+    color: white;
+    position: relative;
+    top: 2vh;
+}
