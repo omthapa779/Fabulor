@@ -369,3 +369,54 @@ font-family: "Agency FB";
 .signup_thing:hover #register{
    color: white;
 }
+.notice_email_error{
+    color: white;
+    font-family: "Agency FB";
+    position: relative;
+    top: 5vh;
+    left: 35.3vw;
+    margin: 0;
+    border: solid 0.2vw #C3073F;
+    width: 30vw;
+    text-align: center;
+    animation: error;
+    animation-duration: 2s;
+    animation: repeat_error;
+    animation-iteration-count:infinite;
+    animation-duration: 2s;
+}
+@keyframes error{
+    0%{
+        top: -100vh;
+    }
+    100%{
+        top: 5vh;
+    }
+}
+@keyframes repeat_error{
+    0%{
+        background-color: #1A1A1D;
+    }
+    100%{
+        background-color: #C3073F;
+    }
+    0%{
+        background-color: #1A1A1D;
+    }
+}
+.same_email_error{
+    color: white;
+    font-family: "Agency FB";
+    position: relative;
+    top: 5vh;
+    left: 35.3vw;
+    margin: 0;
+    border: solid 0.2vw #C3073F;
+    width: 30vw;
+    text-align: center;
+    animation: error;
+    animation-duration: 2s;
+    animation: repeat_error;
+    animation-iteration-count:infinite;
+    animation-duration: 2s;
+}

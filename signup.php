@@ -1,107 +1,3 @@
-<?php
-require_once "database_config.php";
-$input_email = $input_username = $input_password = "";
-$email_err = $username_err = $password_err = "";
-
-#$_SERVER['REQUEST_METHOD'] == 'POST'
-# determines whether the request was a POST or GET request.
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (empty(trim($_POST["input_email"]))) {
-        $email_err = "email cannot be blank";
-
-    }
-    //IF not empty proceed forward.
-    else {
-        # mysqli_prepare Prepares the SQL query, and returns a statement
-        #handle to be used for further operations on the statement.
-        $sql = "SELECT id FROM users WHERE email = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
-            // Set the value of param username
-            $param_email = trim($_POST['input_email']);
-            // Try to execute this statement
-            if (mysqli_stmt_execute($stmt)) {
-                mysqli_stmt_store_result($stmt);
-                if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $email_err = "This email is already taken";
-                    echo $username_err;
-                } else {
-                    $input_username = trim($_POST['input_email']);
-                }
-            } else {
-                echo "Something went wrong";
-            }
-        }
-    }
-
-    mysqli_stmt_close($stmt);
-
-    // Check if username is empty
-    if (empty(trim($_POST["input_username"]))) {
-        $username_err = "Username cannot be blank";
-    }
-    //IF not empty proceed forward.
-    else {
-        # mysqli_prepare Prepares the SQL query, and returns a statement
-        #handle to be used for further operations on the statement.
-        $sql = "SELECT id FROM users WHERE name = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            // Set the value of param username
-            $param_username = trim($_POST['input_username']);
-            // Try to execute this statement
-            if (mysqli_stmt_execute($stmt)) {
-                mysqli_stmt_store_result($stmt);
-                if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $username_err = "This username is already taken";
-                    echo $username_err;
-                } else {
-                    $input_username = trim($_POST['input_username']);
-                }
-            } else {
-                echo "Something went wrong";
-            }
-        }
-    }
-
-    mysqli_stmt_close($stmt);
-
-// Check for password
-    if (empty(trim($_POST['input_password']))) {
-        $password_err = "Password cannot be blank";
-    } elseif (strlen(trim($_POST['input_password'])) < 5) {
-        $password_err = "Password cannot be less than 5 characters";
-    } else {
-        $input_password = trim($_POST['input_password']);
-    }
-
-// If there were no errors, go ahead and insert into the database
-    if (empty($email_err) && empty($username_err) && empty($password_err)){
-        $sql = "INSERT INTO users (email, name, password) VALUES (?, ?, ?)";
-        $stmt = mysqli_prepare($conn, $sql);
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "sss", $param_email, $param_username, $param_password);
-
-            // Set these parameters
-            $param_email = $input_email;
-            $param_username = $input_username;
-            $param_password = password_hash($input_password, PASSWORD_DEFAULT);
-
-            // Try to execute the query
-            if (mysqli_stmt_execute($stmt)) {
-                header("location: login.php");
-            } else {
-                echo "Something went wrong... cannot redirect!";
-            }
-        }
-        mysqli_stmt_close($stmt);
-    }
-    mysqli_close($conn);
-}
-
-?>
 <html lang="en">
 <head>
     <title>Fabulor | SignUP</title>
@@ -109,6 +5,74 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 <body>
 <div class="welcome_text">
+<?php
+require_once "database_config.php";
+$input_email = $input_username = $input_password = '';
+$email_err = $username_err = $password_err= '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input_email = trim($_POST["input_email"]);
+    if (empty($input_email)) {
+        $email_err = "Please enter a email.";
+?>
+
+        <div class="notice_email_error">
+            Please enter a email
+        </div>
+<?php
+    }
+    $sql = "SELECT id FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $param_email);
+        // Set the value of param username
+        $param_email = trim($_POST['input_email']);
+        // Try to execute this statement
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_store_result($stmt);
+            if (mysqli_stmt_num_rows($stmt) == 1) {
+                $email_err = "This email is already taken";
+                ?>
+    <div class="same_email_error">
+        <?php echo $email_err; ?>
+    </div>
+<?php
+            } else {
+                $input_email = trim($_POST['input_email']);
+            }
+        } else {
+            echo "Something went wrong";
+        }
+    }
+    else{
+        $email = $input_email;
+    }
+    $sql = "INSERT INTO users (email) VALUES (?)";
+    if (empty($email_err)) {
+        if ($stmt = mysqli_prepare($conn, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s",  $input_email,);
+
+            // Set parameters
+            $input_email = trim($_POST['input_email']);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                header("location: retrieve_to.php");
+            } else {
+                echo "ERROR: Could not execute query: $sql. " . mysqli_error($conn);
+            }
+        } else {
+            echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
+        }
+
+// Close statement
+        mysqli_stmt_close($stmt);
+
+// Close connection
+        mysqli_close($conn);
+    }
+}
+?>
     <div class="back_button">
         <a href="index.php">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" fill="#C3073F" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -116,14 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </svg>
         </a>
     </div>
-    <form class="sign_box" method="post" action="">
+    <form class="sign_box" method="POST" action="">
         <h1>Sign UP</h1>
         <div class="email">EMAIL : </div>
-        <input type="email" placeholder="Enter Email" name="email" id="input_email">
+        <input type="email" placeholder="Enter Email" name="input_email" id="input_email">
         <div class="username">USERNAME : </div>
-        <input type="text" placeholder="Create Username" name="username" id="input_username">
+        <input type="text" placeholder="Create Username" name="input_username" id="input_username">
         <div class="password">PASSWORD : </div>
-        <input type="password" placeholder="Create Password" name="password" id="input_password">
+        <input type="password" placeholder="Create Password" name="input_password" id="input_password">
         <div class="signup_thing">
             <button id="register" type="submit">CREATE</button>
         </div>
