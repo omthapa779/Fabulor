@@ -18,10 +18,13 @@
   </div>
      <div class="buttons">
          <div class="login">
+             <div class="background_white"></div>
              <a class="login_button">LOGIN</a>
+
          </div>
          <div class="signup">
-             <button class="signup_button">SIGN UP</button>
+             <div class="background_white_up"></div>
+             <a  href="signup.php" class="signup_button">SIGN UP</a>
          </div>
      </div>
  </div>
