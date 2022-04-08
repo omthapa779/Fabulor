@@ -46,18 +46,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else{
         $email = $input_email;
     }
-    $sql = "INSERT INTO users (email) VALUES (?)";
-    if (empty($email_err)) {
+
+    if (empty(trim($_POST["input_username"]))) {
+        ?>
+        <div class="username_error">
+            Username Cannot be blank
+</div>
+<?php
+    }
+    //IF not empty proceed forward.
+    else {
+        # mysqli_prepare Prepares the SQL query, and returns a statement
+        #handle to be used for further operations on the statement.
+        $sql = "SELECT id FROM users WHERE name = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            // Set the value of param username
+            $param_username = trim($_POST['input_username']);
+            // Try to execute this statement
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_store_result($stmt);
+                if (mysqli_stmt_num_rows($stmt) == 1) {
+                    $username_err = "This username is already taken";
+                    ?>
+    <div class="username_error">
+       Username already taken. Try modifying
+    </div>
+<?php
+                } else {
+                    $username = trim($_POST['input_username']);
+                }
+            } else {
+                echo "Something went wrong";
+            }
+        }
+    }
+
+    if (empty(trim($_POST['input_password']))) {
+        $password_err = "Password cannot be blank"
+        ?>
+    <div class="password_error">
+        Password cannot be blank
+    </div>
+    <?php
+    } elseif (strlen(trim($_POST['input_password'])) < 5) {
+        $password_err = "Password cannot be less than 5 characters";
+        ?>
+        <div class="password_error">
+            Password cannot be less than 5 characters
+        </div>
+    <?php
+    } else {
+        $password = trim($_POST['input_password']);
+    }
+
+    $sql = "INSERT INTO users (email,name,password) VALUES (?,?,?)";
+    if (empty($email_err) && empty($username_err) && empty($password_err)) {
         if ($stmt = mysqli_prepare($conn, $sql)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s",  $input_email,);
+            mysqli_stmt_bind_param($stmt, "sss",  $input_email, $input_username, $input_password);
 
             // Set parameters
             $input_email = trim($_POST['input_email']);
+            $input_username  = trim($_POST['input_username']);
+            $input_password = trim($_POST[password_hash('input_password', PASSWORD_DEFAULT)]);
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                header("location: retrieve_to.php");
+                header("location: login.php");
             } else {
                 echo "ERROR: Could not execute query: $sql. " . mysqli_error($conn);
             }
@@ -65,9 +122,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
         }
 
-// Close statement
+        // Close statement
         mysqli_stmt_close($stmt);
-
 // Close connection
         mysqli_close($conn);
     }
@@ -92,6 +148,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button id="register" type="submit">CREATE</button>
         </div>
     </form>
+</div>
+<div class="background_text">
+    <h1>FABULOR</h1>
 </div>
 </body>
 </html>

@@ -196,7 +196,6 @@
     top: -2vh;
     animation: sign_up;
     animation-duration: 2s;
-
 }
 @keyframes sign_up{
     0%{
@@ -278,6 +277,7 @@
     animation: sign_box_intro;
     animation-duration: 3s;
     text-align: center;
+    z-index: 2;
 }
 @keyframes sign_box_intro {
     0%{
@@ -404,6 +404,22 @@ font-family: "Agency FB";
         background-color: #1A1A1D;
     }
 }
+.username_error{
+    color: white;
+    font-family: "Agency FB";
+    position: relative;
+    top: 6vh;
+    left: 35.3vw;
+    margin: 0;
+    border: solid 0.2vw #C3073F;
+    width: 30vw;
+    text-align: center;
+    animation: error;
+    animation-duration: 2s;
+    animation: repeat_error;
+    animation-iteration-count:infinite;
+    animation-duration: 2s;
+}
 .same_email_error{
     color: white;
     font-family: "Agency FB";
@@ -419,4 +435,38 @@ font-family: "Agency FB";
     animation: repeat_error;
     animation-iteration-count:infinite;
     animation-duration: 2s;
+}
+.password_error{
+    color: white;
+    font-family: "Agency FB";
+    position: relative;
+    top: 7vh;
+    left: 35.3vw;
+    margin: 0;
+    border: solid 0.2vw #C3073F;
+    width: 30vw;
+    text-align: center;
+    animation: error;
+    animation-duration: 2s;
+    animation: repeat_error;
+    animation-iteration-count:infinite;
+    animation-duration: 2s;
+}
+.background_text{
+    position: relative;
+    top: -80vh;
+    left: 0vw;
+    width:210vw;
+    height: 200vh;
+}
+.background_text h1{
+    position: relative;
+    top: -21vh;
+    left: 7vw;
+    font-family: "Agency FB";
+    color: #C3073F;
+    transform: rotate(-10deg)
+               skew(5deg);
+    font-size: 28vw;
+   z-index: 1;
 }
