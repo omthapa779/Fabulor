@@ -15,12 +15,11 @@
       <div class="line_index">
       <HR>
       </div>
-  </div>
+  </div>x`
      <div class="buttons">
          <div class="login">
              <div class="background_white"></div>
-             <a class="login_button">LOGIN</a>
-
+             <a href="login.php" class="login_button">LOGIN</a>
          </div>
          <div class="signup">
              <div class="background_white_up"></div>

@@ -149,8 +149,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </div>
-<div class="background_text">
-    <h1>FABULOR</h1>
-</div>
 </body>
 </html>
