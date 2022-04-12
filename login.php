@@ -1,67 +1,3 @@
-<?php
- session_start();
-if(isset($_SESSION['username']))
-{
-    header("location: main.php");
-    exit;
-}
-require_once "database_config.php";
-
-$input_email = $input_password = "";
-$err = "";
-if ($_SERVER['REQUEST_METHOD'] == "POST"){
-    if(empty(trim($_POST['input_email'])) || empty(trim($_POST['input_password'])))
-    {
-        $err = "Please enter username and password";?>
-        <div class="notice_email_error">
-    Please enter a email and password
-    </div>
-<?php
-    }
-    else{
-        $input_email = trim($_POST['input_email']);
-        $input_password = trim($_POST['input_password']);
-    }
-if(empty($err))
-{
-$sql = "SELECT id, email, password FROM users WHERE email = ?";
-$stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "s", $param_email);
-$param_email = $input_email;
-    if(mysqli_stmt_execute($stmt)){
-        mysqli_stmt_store_result($stmt);
-        if(mysqli_stmt_num_rows($stmt) == 1)
-        {
-            mysqli_stmt_bind_result($stmt, $id, $input_email, $input_password);
-            if(mysqli_stmt_fetch($stmt))
-            {
-                if(password_verify($input_password))
-                {
-                    // this means the password is corrct. Allow user to login
-                    session_start();
-                    $_SESSION["email"] = $input_email;
-                    $_SESSION["id"] = $id;
-                    $_SESSION["loggedin"] = true;
-
-                    //Redirect user to welcome page
-                    header("location: main.php");
-
-                }
-                else{
-                    ?>
-                    <div class="same_email_error">
-                        Password Does not match!
-                    </div>
-<?php
-                }
-            }
-
-        }
-
-    }
-}
-}
-?>
 <html lang="en">
 <head>
     <title>Fabulor | LOGIN</title>
@@ -69,6 +5,69 @@ $param_email = $input_email;
 </head>
 <body>
 <div class="welcome_text">
+<?php
+session_start();
+if(isset($_SESSION['input_email']))
+{
+    header("location: main.php");
+    exit;
+}
+require_once "database_config.php";
+$input_email = $input_password = "";
+$err = "";
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+
+if(empty(trim($_POST['input_email'])) || empty(trim($_POST['input_password'])))
+{ ?>
+<div class="password_error">
+    Please Enter a valid Email and Password
+</div>
+    <?php
+}
+else{
+    $input_username = trim($_POST['input_email']);
+    $input_password = trim($_POST['input_password']);
+}
+if(empty($err))
+{
+$sql = "SELECT id, email, password FROM users WHERE email = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "s", $param_email);
+$param_email = $input_email;
+
+if(mysqli_stmt_execute($stmt)){
+mysqli_stmt_store_result($stmt);
+if(mysqli_stmt_num_rows($stmt) == 1){
+    mysqli_stmt_bind_result($stmt, $id, $input_email, $hashed_password);
+    if(mysqli_stmt_fetch($stmt))
+    {
+        if(password_verify($input_password, $hashed_password))
+        {
+            // this means the password is correct. Allow user to login
+            session_start();
+            $_SESSION["input_email"] = $input_email;
+            $_SESSION["id"] = $id;
+            $_SESSION["loggedin"] = true;
+            //Redirect user to welcome page
+            header("location: main.php");
+        }
+        else{
+            echo "else1";
+          ?>
+            <div class="password_error">
+                Invalid password or email
+            </div>
+    <?php
+        }
+    }
+
+}
+
+}
+}
+}
+?>
+
 <div class="back_button">
     <a href="index.php">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" fill="#C3073F" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -76,7 +75,7 @@ $param_email = $input_email;
         </svg>
     </a>
 </div>
-<form class="sign_box" method="POST" action="">
+<form class="sign_box" method="POST" >
     <h1>LOGIN</h1>
     <div class="email">EMAIL : </div>
     <input type="email" placeholder="Enter Email" name="input_email" id="input_email">
