@@ -25,7 +25,7 @@ if(empty(trim($_POST['input_email'])) || empty(trim($_POST['input_password'])))
     <?php
 }
 else{
-    $input_username = trim($_POST['input_email']);
+    $input_email = trim($_POST['input_email']);
     $input_password = trim($_POST['input_password']);
 }
 if(empty($err))
@@ -35,9 +35,11 @@ $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "s", $param_email);
 $param_email = $input_email;
 
-if(mysqli_stmt_execute($stmt)){
-mysqli_stmt_store_result($stmt);
-if(mysqli_stmt_num_rows($stmt) == 1){
+ if(mysqli_stmt_execute($stmt)){
+  mysqli_stmt_store_result($stmt);
+   if(mysqli_stmt_num_rows($stmt) == 1)
+   {
+    echo "1";
     mysqli_stmt_bind_result($stmt, $id, $input_email, $hashed_password);
     if(mysqli_stmt_fetch($stmt))
     {
@@ -52,7 +54,6 @@ if(mysqli_stmt_num_rows($stmt) == 1){
             header("location: main.php");
         }
         else{
-            echo "else1";
           ?>
             <div class="password_error">
                 Invalid password or email
@@ -61,8 +62,9 @@ if(mysqli_stmt_num_rows($stmt) == 1){
         }
     }
 
+}else {
+    echo "error";
 }
-
 }
 }
 }
