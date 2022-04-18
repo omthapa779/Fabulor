@@ -56,13 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     $input_username = trim($_POST['input_username']);
                 }
-            } else {
-                echo "Something went wrong";
+            }
 
-
-    }
-
-    if (empty(trim($_POST['input_password']))) {
+if(empty(trim($_POST['input_password']))){
         $password_err = "Password cannot be blank"
         ?>
     <div class="password_error">
@@ -114,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </svg>
         </a>
     </div>
-    <form class="sign_box" method="POST" action="">
+    <form class="sign_box" method="POST" action="" enctype="multipart/form-data">
         <h1>Sign UP</h1>
         <div class="email">EMAIL : </div>
         <input type="email" placeholder="Enter Email" name="input_email" id="input_email">
@@ -122,6 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" placeholder="Create Username" name="input_username" id="input_username">
         <div class="password">PASSWORD : </div>
         <input type="password" placeholder="Create Password" name="input_password" id="input_password">
+        <input type="file" name="photo" id="photo">
         <div class="signup_thing">
             <button id="register" type="submit">CREATE</button>
         </div>

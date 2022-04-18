@@ -13,12 +13,13 @@ if(isset($_SESSION['input_email']))
     exit;
 }
 require_once "database_config.php";
-$input_email = $input_password = "";
+$input_username = $input_email = $input_password = "";
 $err = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
-if(empty(trim($_POST['input_email'])) || empty(trim($_POST['input_password'])))
-{ ?>
+if(empty(trim($_POST['input_email'])) || empty(trim($_POST['input_password']))){
+ ?>
+
 <div class="password_error">
     Please Enter a valid Email and Password
 </div>
@@ -27,20 +28,22 @@ if(empty(trim($_POST['input_email'])) || empty(trim($_POST['input_password'])))
 else{
     $input_email = trim($_POST['input_email']);
     $input_password = trim($_POST['input_password']);
+    $input_username = trim($_POST['input_username']);
 }
 if(empty($err))
 {
-$sql = "SELECT id, email, password FROM users WHERE email = ?";
+$sql = "SELECT id, email, password, name FROM users WHERE email=? AND name=?";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "s", $param_email);
+mysqli_stmt_bind_param($stmt, "ss", $param_email, $param_name);
 $param_email = $input_email;
+$param_name = $input_username;
 
  if(mysqli_stmt_execute($stmt)){
   mysqli_stmt_store_result($stmt);
    if(mysqli_stmt_num_rows($stmt) == 1)
    {
     echo "1";
-    mysqli_stmt_bind_result($stmt, $id, $input_email, $hashed_password);
+    mysqli_stmt_bind_result($stmt, $id, $input_email, $hashed_password, $input_username);
     if(mysqli_stmt_fetch($stmt))
     {
         if(password_verify($input_password, $hashed_password))
@@ -49,7 +52,9 @@ $param_email = $input_email;
             session_start();
             $_SESSION["input_email"] = $input_email;
             $_SESSION["id"] = $id;
+            $_SESSION["input_username"]=$input_username;
             $_SESSION["loggedin"] = true;
+
             //Redirect user to welcome page
             header("location: main.php");
         }
@@ -79,6 +84,7 @@ $param_email = $input_email;
 </div>
 <form class="sign_box" method="POST" >
     <h1>LOGIN</h1>
+    <input type="text" placeholder=" MAKE NickNAME" name="input_username" id="input_username" style="position: relative; top: 0vh">
     <div class="email">EMAIL : </div>
     <input type="email" placeholder="Enter Email" name="input_email" id="input_email">
     <div class="password">PASSWORD : </div>

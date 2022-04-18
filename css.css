@@ -440,7 +440,7 @@ font-family: "Agency FB";
     animation-iteration-count:infinite;
     animation-duration: 2s;
 }
-.password_error{
+.password_error {
     color: white;
     font-family: "Agency FB";
     position: relative;
@@ -453,6 +453,131 @@ font-family: "Agency FB";
     animation: error;
     animation-duration: 2s;
     animation: repeat_error;
-    animation-iteration-count:infinite;
+    animation-iteration-count: infinite;
     animation-duration: 2s;
+}
+.menu_overlay{
+    width: 50vw;
+    height: 10vh;
+    background: url(images/settings.png);
+    background-size: cover;
+    position: relative;
+    top: 90vh;
+    left: 25vw;
+}
+.menu_overlay h1 {
+    color: white;
+    font-family: "Agency FB";
+    font-size: 3vw;
+    position: relative;
+    left: 12vw;
+    top: 1vh;
+}
+.menu_overlay a{
+    text-decoration: none;
+    color: white;
+}
+
+.vr{
+    border-left: solid 0.4vw black;
+    height: 6vh;
+    position: relative;
+    top: -6vh;
+    left: 25vw;
+}
+.microphone_on{
+    position: relative;
+    top: -13.7vh;
+    left: 29vw;
+}
+.speakers_on{
+    position: relative;
+    top: -18.7vh;
+    left: 33vw;
+}
+.settings_icon{
+    position: relative;
+    top:-9.1vh;
+    left: 37vw;
+    height: 20vh;
+    width: 10vw;
+}
+.logout_button{
+    text-decoration: none;
+    color: #C3073F;
+    font-size: 3vw;
+    font-family: "Agency FB";
+}
+.border_logout{
+    height: 8vh;
+    width: 12vw;
+    text-align: center;
+    position: relative;
+    top: 23vh;
+    left: 42vw;
+    border: solid 0.4vw #C3073F;
+}
+.my_email{
+    font-family: "Agency FB";
+    font-size: 3vw;
+    color: #C3073F;
+    position: relative;
+    width: 98vw;
+    height: 50vh;
+    text-align: center;
+    top: 40vh;
+}
+.border_logout a{
+    position: relative;
+    top: -1.5vh;
+}
+.edits {
+    position: relative;
+    width: 10vw;
+    height: 10vh;
+    color: white;
+    left: 62vw;
+    top: -9vh;
+}
+#photo{
+    position: relative;
+    top: 10vh;
+    font-family: "Agency FB";
+    color: #C3073F;
+}
+.edit_form{
+    position: relative;
+    border: solid 0.4vw #C3073F;
+    height: 40vh;
+    width: 30vw;
+    top: 30vh;
+    left: 35vw;
+    text-align: center;
+}
+.chat{
+    width: 85vw;
+    height: 80vh;
+    border: solid 0.3vw #C3073F;
+    position: relative;
+    left: 7vw;
+    top: -2vh;
+    alignment: center;
+}
+.chat_box{
+   border: solid 0.1vw #4E4E50;
+   position: relative;
+   width: 80vw;
+    height: 30vw;
+    top: 2vh;
+    left: 2vw;
+    clear:both;
+    display:inline-block;
+    overflow-y:scroll;
+}
+.my_name{
+    position: relative;
+    color: #C3073F;
+    font-family: "Agency FB";
+    left: 45vw;
+    top: -2vh;
 }
