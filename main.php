@@ -54,6 +54,7 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO chats (uname, msg, dt)
                 VALUES ('$un', '$m', '$ts')";
     if (mysqli_query($link, $sql)) {
+        header("location: main.php");
     } else {
         echo "ERROR: Message not sent!!!";
     }
@@ -70,7 +71,7 @@ $i=0;
 while($row = $run->fetch_array()) :
 if($i==0) {
     $i = 5;
-    $first = $row;
+    $new = $row;
     ?>
     <div class="message_box" style="background: black; width: 15vw;height: 8vh; float: right; font-family: 'Agency FB'">
         <span style="color:#C3073F; float: right;font-size: 1.5vw; position: relative; left:-0.5vw">
@@ -79,8 +80,8 @@ if($i==0) {
         </span>
         <div style="position: relative; top: 4vh; left: 0.2vw">
             <span style="color: #C3073F; float: left; font-size: 1vw">
-            <?php
-    echo $row['uname']; ?>  , <?php echo $row['dt'];;
+                <?php
+    echo $row['uname'].","; ?><?php echo $row['dt'];;
     ?>
          </span><br>
         </div>
@@ -92,17 +93,16 @@ if($i==0) {
 }
 else
 {
-if($row['uname']!=$first['uname'])
-{
+  if($row['uname']!=$new['uname']) {
     ?>
         <div style="background: white; width: 15vw; height: 8vh; float: left; font-family: 'Agency FB'">
             <span style="color:#C3073F; float:left; font-size: 2vw">
                 <?php
     echo $row['msg'];
                 ?></span><br>
-            <div style="position: relative;  top: 0.2vh"
+            <div style="position: relative;  top: 1vh; left: -1vw">
     <span style="color: black; float:left; font-size:1vw"><?php
-    echo $row['uname']; ?>,<?php echo $row['dt'];
+    echo $row['uname']; ?><?php echo $row['dt'];
                 ?></span><br>
         </div>
         </div><br><br><br>
@@ -113,10 +113,10 @@ else{
         <span style="color:#C3073F; float: right;font-size: 1.5vw; position: relative; left:-0.5vw">
                 <?php
                 echo $row['msg']; ?><br></span>
-          <div style="position: relative; top: 4vh; left: 0.2vw">
+          <div style="position: relative; top: 4vh; left: 0.2vw;">
             <span style="color: #C3073F; float: left; font-size: 1vw">
                 <?php
-    echo $row['uname']; ?> , <?php echo $row['dt'];
+    echo $row['uname']; ?><?php echo $row['dt'];
                 ?>
             </span>
           </div>
